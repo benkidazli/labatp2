@@ -1,7 +1,9 @@
 #include "Student.h"
+
 Student::Student() {
 	cout << "Конструктор без параметров" << endl;
 }
+
 Student::Student(Student& obj) {
 	cout << "Конструктор копирования" << endl;
 	string bufStr1, bufStr2, bufStr3;
@@ -12,27 +14,35 @@ Student::Student(Student& obj) {
 	obj.getEducation(bufStr1, bufInt1, bufStr2, bufInt2, bufStr3, bufInt3);
 	setEducation(bufStr1, bufInt1, bufStr2, bufInt2, bufStr3, bufInt3);
 }
+
 Student::~Student() {
 	cout << "Деструктор" << endl;
 }
+
 void Student::setSurname(string buf) {
 	if (buf == "")
 		throw exception("Неверная фамилия");
 	surname = buf;
 }
+
 string Student::getSurname() { return surname; }
 void Student::setInitials(string buf) {
 	if (buf == "" || buf.size() != 4 || buf.find('.') == -1)
 		throw exception("Неверные инициалы");
 	initials = buf;
 }
+
 string Student::getInitials() { return initials; }
 void Student::setGroup(int buf) {
 	if (buf < 1000 || buf > 10000)
 		throw exception("Неверный номер группы");
 	group = buf;
 }
-int Student::getGroup() { return group; }
+
+int Student::getGroup() { 
+	return group; 
+}
+
 void Student::setEducation(string bufStr1, int bufInt1, string bufStr2, int bufInt2,
 	string bufStr3, int bufInt3) {
 	if (bufStr1 == "" || bufStr2 == "" || bufStr3 == "")
@@ -47,6 +57,7 @@ void Student::setEducation(string bufStr1, int bufInt1, string bufStr2, int bufI
 	education[2].item = bufStr3;
 	education[2].grade = bufInt3;
 }
+
 void Student::getEducation(string& bufStr1, int& bufInt1, string& bufStr2, int&
 	bufInt2, string& bufStr3, int& bufInt3) {
 	bufStr1 = education[0].item;
@@ -56,6 +67,7 @@ void Student::getEducation(string& bufStr1, int& bufInt1, string& bufStr2, int&
 	bufStr3 = education[2].item;
 	bufInt3 = education[2].grade;
 }
+
 istream& operator>> (istream& in, Student& object) {
 	string bufStr1, bufStr2, bufStr3;
 	int bufInt1, bufInt2, bufInt3;
@@ -84,6 +96,7 @@ istream& operator>> (istream& in, Student& object) {
 	cout << "Студент внесен в список" << endl;
 	return in;
 }
+
 ostream& operator<< (ostream& out, Student& object) {
 	string bufStr1, bufStr2, bufStr3;
 	int bufInt1, bufInt2, bufInt3;
